@@ -18,7 +18,7 @@
 class Algorithm {
  public:
   virtual bool Small() = 0;
-  virtual Solution SolveSmall(Problem) = 0;
+  virtual Solution SolveSmall(Problem p, int size) = 0;
   virtual Solution[] Divide(Problem) = 0;
   virtual Solution Combine(Solution[]) = 0;
   std::string getA() const;
