@@ -1,8 +1,11 @@
 # Páctica X. Título
+
 ## Introducción
+
 Este programa sirve para X.
 
 ## Descripción del problema
+
 El problema planteado es X  
   
 <!--- (Una tabla por si hace falta)
@@ -19,23 +22,31 @@ El problema planteado es X
 | Paragraph                |           Text           |                 And more |
 
 ## Compilación y ejecución
+
 Compilación:  
-```
-$ mkdir build
-$ cd build
-$ cmake ..
-$ make
+
+```bash
+mkdir build
+cd build
+cmake ..
+make
 ```  
+
 Después de compilar, puede ejecutar manualmente con ```$ ./X```
+
 ## Detalles de implementación
+
 Código desarrollado en C++ usando la herramienta CMake para compilar y GoogleTests para testing.
+
 ### Tareas
+
 - [x] Crear el repositorio
 - [ ] Implementar el código
+
 ## Referencias
+
 [Enunciado de la práctica](http://campusingenieriaytecnologia2122.ull.es)  
 [Cualquier link](http://link.org/) 
-
 
 <!---
 UNO MÁS SERIO desde (https://github.com/IvanSantosGonz/the-good-documentation.git)
