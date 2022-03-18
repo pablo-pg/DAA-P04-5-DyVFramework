@@ -25,7 +25,7 @@ class Algorithm {
   std::string getB() const;
   std::string getC();
 
- private:
+ protected:
   std::string a_;
   std::string b_;
   std::string c_;
