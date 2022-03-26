@@ -15,12 +15,14 @@
 #include <string>
 #include <vector>
 
+template<class Prob, class Sol>
 class Algorithm {
  public:
+  Algorithm(std::string a, std::string b, std::string c);
   virtual bool Small() = 0;
-  virtual Solution SolveSmall(Problem p, int size) = 0;
-  virtual Solution[] Divide(Problem) = 0;
-  virtual Solution Combine(Solution[]) = 0;
+  virtual Sol SolveSmall(Prob p, int size) = 0;
+  virtual std::vector<Sol> Divide(Prob p) = 0;
+  virtual Sol Combine(std::vector<Sol> s) = 0;
   std::string getA() const;
   std::string getB() const;
   std::string getC();

@@ -8,21 +8,17 @@ INCLUDE	:= include
 
 LIBRARIES	:= lib
 EXECUTABLE	:= framework
-ARGS  := test/cinta.in test/salida.out 2
 
 
 all: $(BIN)/$(EXECUTABLE)
 
-$(BIN)/$(EXECUTABLE): $(SRC)/*.cc $(SRC)/instructions/*.cc
+$(BIN)/$(EXECUTABLE): $(SRC)/*.cc 
 	$(CXX) $(CXX_FLAGS) -I $(INCLUDE) $^ -o $@ -L $(LIBRARIES)
 
 build: clean all
 
-one:
-	./$(BIN)/$(EXECUTABLE) test/ejemplosRAM/test1.ram $(ARGS)
-
-
-
+run: build
+	./$(BIN)/$(EXECUTABLE)
 
 clean:
 	-rm $(BIN)/simulador

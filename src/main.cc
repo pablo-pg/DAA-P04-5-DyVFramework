@@ -21,6 +21,8 @@
 
 #include <iostream>
 #include "../include/miscellany.h"
+#include "../include/divide.h"
+#include "../include/generate_rand.h"
 
 
 int main() {

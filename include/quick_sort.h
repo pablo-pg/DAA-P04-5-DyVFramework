@@ -15,8 +15,8 @@
 #include "./algorithm.h"
 
 
-class QuickSort : public Algorithm {
+// class QuickSort : public Algorithm {
 
-};
+// };
 
 #endif  // QUICK_SORT_H_

@@ -10,7 +10,7 @@
  */
 
 #ifndef DIVIDE_H_
-#define DIVIDE_H
+#define DIVIDE_H_
 
 #include <string>
 #include <vector>
@@ -19,17 +19,17 @@
 #include "./merge_sort.h"
 #include "./quick_sort.h"
 
-template <class T>
+template <class Alg, class Prob, class Sol>
 class Divide {
  public:
-  Divide(std::vector<int> problem);
-  void Solve() const;
-  std::string Equation() conast;
+  Divide(Prob problem);
+  Sol Solve(Prob prbolem, int size) const;
+  std::string Equation() const;
  private:
-  std::vector<int> problem_;
-  T* algorithm_;
+  Prob problem_;
+  Alg* algorithm_;
 };
 
-#include "../src/divide.inl"
+#include "../src/divide.cc"
 
 #endif  // DIVIDE_H_

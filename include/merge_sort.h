@@ -12,11 +12,16 @@
 #ifndef MERGE_SORT_H_
 #define MERGE_SORT_H_
 
+#include <vector>
 #include "./algorithm.h"
 
-
-class MergeSort : public Algorithm {
-
+template<class T>
+class MergeSort : public Algorithm<std::vector<T>, std::vector<T>> {
+  using Algorithm<std::vector<T>, std::vector<T>>::Algorithm;
+  bool Small();
+  std::vector<T> SolveSmall(std::vector<T> p, int size);
+  std::vector<std::vector<T>> Divide(std::vector<T> p);
+  std::vector<T> Combine(std::vector<std::vector<T>> s);
 };
 
 #endif  // MERGE_SORT_H_

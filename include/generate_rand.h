@@ -23,7 +23,7 @@
  * @param maxSize Maximum size of the vector
  * @return std::vector<int> The random vector
  */
-std::vector<int> randomVector(int minSize, int maxSize = 100000000000) {
+std::vector<int> randomVector(int minSize, int maxSize = 1000000) {
   minSize = minSize == 0 ? 0 : minSize;
   if (maxSize < minSize) {
     int tempMaxSize = maxSize;
@@ -31,7 +31,8 @@ std::vector<int> randomVector(int minSize, int maxSize = 100000000000) {
     minSize = tempMaxSize;
   }
   srand(time(nullptr));
-  const int size = rand() % (maxSize - minSize + 1) + minSize;
+  const int size = rand_r(reinterpret_cast<uint*>(time(nullptr))) %
+      (maxSize - minSize + 1) + minSize;
   std::vector<int> result;
   result.resize(size);
   auto f = []() -> int { return rand() % 10000; };
