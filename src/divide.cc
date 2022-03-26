@@ -9,7 +9,9 @@
  * 
  */
 
-#pragma once
+#ifndef DIVIDE_CC_
+#define DIVIDE_CC_
+
 #include "./../include/divide.h"
 
 template <class Alg, class Prob, class Sol>
@@ -27,3 +29,6 @@ Sol Divide<Alg, Prob, Sol>::Solve(Prob p, int size) const {
   Sol solution = algorithm_->Combine(sols);
   return solution;
 }
+
+
+#endif  //< DIVIDE_CC_
