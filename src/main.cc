@@ -24,8 +24,20 @@
 #include "../include/divide.h"
 #include "../include/generate_rand.h"
 
+void debugExe();
 
 int main() {
+  std::string mode;
+  bool debug = false;
+  std::cout << "Modo 1: normal\nModo 2: debug\nElija un modo: ";
+  std::cin >> mode;
+  if (mode == "2" || mode == "debug" || mode == "DEBUG") {
+    debug = true;
+  }
+  if (debug) {
+    debugExe();
+    return 0;
+  }
   Divide<MergeSort<int>, std::vector<int>, std::vector<int>> Merge;
   std::vector<int> prob = randomVector<int>(4, 10);
   // for (auto a : prob) std::cout << a << " ";
@@ -36,6 +48,42 @@ int main() {
   std::cout << std::endl;
   std::vector<int> result = Merge.Solve(prob, prob.size());
   std::cout << "Resu: ";
+  for (auto x : result) std::cout << x << " ";
+  std::cout << std::endl;
+  return 0;
+}
+
+
+
+void debugExe() {
+  enum Algorithms {mergeSort, quickSort};
+  std::cout << "Algoritmo 1: MergeSort\nAlgoritmo 2: QuickSort\n"
+            << "Elija un algoritmo: ";
+  std::string alg;
+  std::cin >> alg;
+  Algorithms chosen_alg;
+  if (alg == "1" || alg == "merge sort" || alg == "mergesort" ||
+      alg == "Mergesort" || alg == "MergeSort") {
+    chosen_alg = mergeSort;
+  } else {
+    chosen_alg = quickSort;
+  }
+  std::string size;
+  std::cout << "Tamaño del problema: ";
+  std::cin >> size;
+  int problemSize = std::stoi(size);
+  std::vector<int> prob = randomVector<int>(problemSize, problemSize);
+  std::cout << "Secuencia original: " << std::endl;
+  for (auto x : prob) std::cout << x << " ";
+  std::cout << "\nSecuencia final: " << std::endl;
+  std::vector<int> result;
+  if (chosen_alg == mergeSort) {
+    Divide<MergeSort<int>, std::vector<int>, std::vector<int>> Solver;
+    result = Solver.Solve(prob, prob.size());
+  } else {
+    // Divide<QuicSort<int>, std::vector<int>, std::vector<int>> Solver;
+    // result = Solver.Solve(prob, prob.size());
+  }
   for (auto x : result) std::cout << x << " ";
   std::cout << std::endl;
 }
