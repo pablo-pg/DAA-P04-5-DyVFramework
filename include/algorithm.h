@@ -12,6 +12,7 @@
 #ifndef ALGORITHM_H_
 #define ALGORITHM_H_
 
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -20,8 +21,8 @@ class Algorithm {
  public:
   Algorithm(std::string a, std::string b, std::string c) :
       a_(a), b_(b), c_(c) {}
-  virtual bool Small() = 0;
-  virtual Sol SolveSmall(Prob p, int size) = 0;
+  virtual bool Small(Prob p) const = 0;
+  virtual Sol SolveSmall(Prob p) = 0;
   virtual std::vector<Sol> Divide(Prob p) = 0;
   virtual Sol Combine(std::vector<Sol> s) = 0;
   std::string getA() const {return a_;}

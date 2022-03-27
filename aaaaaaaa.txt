@@ -1,0 +1,8 @@
+rm bin/framework
+# echo "Borrado ejecutable..."
+g++ -Wswitch -Wall -Wextra -std=c++17 -ggdb -Wno-return-type  -I include src/merge_sort.cc src/main.cc src/divide.cc -o bin/framework -L lib
+# echo "Compilado..."
+./bin/framework
+T(n) = 2T(1/2) + n
+Orig: 1874 4785 2131 6627 7123 8912 2364 8261 5562 7621 
+Resu: 1874 2131 2364 4785 5562 6627 7123 7621 8261 8912 

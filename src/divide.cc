@@ -35,14 +35,15 @@ void Divide<Alg, Prob, Sol>::setProblem(Prob problem) {
 template <class Alg, class Prob, class Sol>
 Sol Divide<Alg, Prob, Sol>::Solve(Prob p, int size) const {
   if (algorithm_->Small(p)) {
+    // std::cout << " a " << std::endl;
     return algorithm_->SolveSmall(p);
   }
   std::vector<Prob> divided = algorithm_->Divide(p);
   std::vector<Sol> sols;
   // for (int i = 0; )
-  Sol s1 = algorithm_->Solve(divided[0], size / 2);
+  Sol s1 = Solve(divided[0], size / 2);
   sols.push_back(s1);
-  Sol s2 = algorithm_->Solve(divided[1], size / 2);
+  Sol s2 = Solve(divided[1], size / 2);
   sols.push_back(s2);
   Sol solution = algorithm_->Combine(sols);
   return solution;

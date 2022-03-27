@@ -27,8 +27,15 @@
 
 int main() {
   Divide<MergeSort<int>, std::vector<int>, std::vector<int>> Merge;
-  // std::vector<int> prob = randomVector<int>(1, 10);
+  std::vector<int> prob = randomVector<int>(4, 10);
   // for (auto a : prob) std::cout << a << " ";
-  Merge.setProblem(randomVector<int>(1, 10));
+  Merge.setProblem(prob);
   std::cout << Merge.Equation() << std::endl;
+  std::cout << "Orig: ";
+  for (auto x : prob) std::cout << x << " ";
+  std::cout << std::endl;
+  std::vector<int> result = Merge.Solve(prob, prob.size());
+  std::cout << "Resu: ";
+  for (auto x : result) std::cout << x << " ";
+  std::cout << std::endl;
 }
