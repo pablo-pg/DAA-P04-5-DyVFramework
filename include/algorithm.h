@@ -18,14 +18,15 @@
 template<class Prob, class Sol>
 class Algorithm {
  public:
-  Algorithm(std::string a, std::string b, std::string c);
+  Algorithm(std::string a, std::string b, std::string c) :
+      a_(a), b_(b), c_(c) {}
   virtual bool Small() = 0;
   virtual Sol SolveSmall(Prob p, int size) = 0;
   virtual std::vector<Sol> Divide(Prob p) = 0;
   virtual Sol Combine(std::vector<Sol> s) = 0;
-  std::string getA() const;
-  std::string getB() const;
-  std::string getC();
+  std::string getA() const {return a_;}
+  std::string getB() const {return b_;}
+  std::string getC() const {return c_;}
 
  protected:
   std::string a_;

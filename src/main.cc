@@ -26,5 +26,9 @@
 
 
 int main() {
-  std::cout << "Hello World" << std::endl;
+  Divide<MergeSort<int>, std::vector<int>, std::vector<int>> Merge;
+  // std::vector<int> prob = randomVector<int>(1, 10);
+  // for (auto a : prob) std::cout << a << " ";
+  Merge.setProblem(randomVector<int>(1, 10));
+  std::cout << Merge.Equation() << std::endl;
 }

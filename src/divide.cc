@@ -1,6 +1,6 @@
 /**
  * @file divide.inl
- * @author your name (you@domain.com)
+ * @author Pablo Pérez González (alu0101318318)
  * @brief 
  * @version 0.1
  * @date 2022-03-18
@@ -12,7 +12,25 @@
 #ifndef DIVIDE_CC_
 #define DIVIDE_CC_
 
-#include "./../include/divide.h"
+#include "../include/divide.h"
+
+template <class Alg, class Prob, class Sol>
+Divide<Alg, Prob, Sol>::Divide() {
+  algorithm_ = new Alg;
+}
+
+
+template <class Alg, class Prob, class Sol>
+Divide<Alg, Prob, Sol>::~Divide() {
+  delete algorithm_;
+}
+
+
+template <class Alg, class Prob, class Sol>
+void Divide<Alg, Prob, Sol>::setProblem(Prob problem) {
+  problem_ = problem;
+}
+
 
 template <class Alg, class Prob, class Sol>
 Sol Divide<Alg, Prob, Sol>::Solve(Prob p, int size) const {
@@ -28,6 +46,17 @@ Sol Divide<Alg, Prob, Sol>::Solve(Prob p, int size) const {
   sols.push_back(s2);
   Sol solution = algorithm_->Combine(sols);
   return solution;
+}
+
+
+template <class Alg, class Prob, class Sol>
+std::string Divide<Alg, Prob, Sol>::Equation() const {
+  std::stringstream eq;
+  eq << "T(n) = " << algorithm_->getA() << "T(1/" << algorithm_->getB() + ")" <<
+       " + " <<
+       ((algorithm_->getC() == std::to_string(1)) ? "" :algorithm_->getC()) <<
+       "n";
+  return eq.str();
 }
 
 

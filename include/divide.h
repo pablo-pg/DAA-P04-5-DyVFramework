@@ -12,6 +12,8 @@
 #ifndef DIVIDE_H_
 #define DIVIDE_H_
 
+#include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -22,7 +24,9 @@
 template <class Alg, class Prob, class Sol>
 class Divide {
  public:
-  Divide(Prob problem);
+  Divide();
+  ~Divide();
+  void setProblem(Prob problem);
   Sol Solve(Prob prbolem, int size) const;
   std::string Equation() const;
  private:
