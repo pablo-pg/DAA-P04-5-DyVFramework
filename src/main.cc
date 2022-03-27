@@ -20,6 +20,7 @@
 
 
 #include <iostream>
+#include <chrono>
 #include "../include/miscellany.h"
 #include "../include/divide.h"
 #include "../include/generate_rand.h"
@@ -39,17 +40,24 @@ int main() {
     return 0;
   }
   Divide<MergeSort<int>, std::vector<int>, std::vector<int>> Merge;
+  // Divide<QuickSort<int>, std::vector<int>, std::vector<int>> Quick;
   std::vector<int> prob = randomVector<int>(4, 10);
   // for (auto a : prob) std::cout << a << " ";
-  Merge.setProblem(prob);
-  std::cout << Merge.Equation() << std::endl;
-  std::cout << "Orig: ";
-  for (auto x : prob) std::cout << x << " ";
-  std::cout << std::endl;
+  // std::cout << Merge.Equation() << std::endl;
+  // std::cout << "Orig: ";
+  // for (auto x : prob) std::cout << x << " ";
+  // std::cout << std::endl;
+  auto start = std::chrono::high_resolution_clock::now();
   std::vector<int> result = Merge.Solve(prob, prob.size());
-  std::cout << "Resu: ";
-  for (auto x : result) std::cout << x << " ";
-  std::cout << std::endl;
+  auto stop = std::chrono::high_resolution_clock::now();
+  auto duration =
+      std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+  std::cout << "Time taken by MergeSort: "
+            << static_cast<double>(duration.count()) / 1.0e3 << "ms"
+            << std::endl;
+  // std::cout << "Resu: ";
+  // for (auto x : result) std::cout << x << " ";
+  // std::cout << std::endl;
   return 0;
 }
 
