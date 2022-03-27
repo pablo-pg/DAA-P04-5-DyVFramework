@@ -30,7 +30,7 @@ void debugExe();
 int main() {
   std::string mode;
   bool debug = false;
-  std::cout << "Modo 1: normal\nModo 2: debug\nElija un modo: ";
+  std::cout << "Mode 1: normal\nMode 2: debug\nChoose a mode: ";
   std::cin >> mode;
   if (mode == "2" || mode == "debug" || mode == "DEBUG") {
     debug = true;
@@ -52,9 +52,19 @@ int main() {
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration =
       std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-  std::cout << "Time taken by MergeSort: "
+  std::cout << "Time taken by MergeSort(" << Merge.Equation() << "):\n"
             << static_cast<double>(duration.count()) / 1.0e3 << "ms"
             << std::endl;
+
+  // start = std::chrono::high_resolution_clock::now();
+  // std::vector<int> result = Quick.Solve(prob, prob.size());
+  // stop = std::chrono::high_resolution_clock::now();
+  // duration =
+  //     std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+  // std::cout << "Time taken by QuickSort: "
+  //           << static_cast<double>(duration.count()) / 1.0e3 << "ms"
+  //           << std::endl;
+  
   // std::cout << "Resu: ";
   // for (auto x : result) std::cout << x << " ";
   // std::cout << std::endl;

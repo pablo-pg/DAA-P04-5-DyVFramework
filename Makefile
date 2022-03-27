@@ -16,13 +16,11 @@ $(BIN)/$(EXECUTABLE): $(SRC)/*.cc
 	$(CXX) $(CXX_FLAGS) -I $(INCLUDE) $^ -o $@ -L $(LIBRARIES)
 
 build: clean all
-	# echo "Compilado..."
 
 run: build
 	./$(BIN)/$(EXECUTABLE)
 
 clean:
 	-rm $(BIN)/framework
-	# echo "Borrado ejecutable..."
 
 clear: clean
