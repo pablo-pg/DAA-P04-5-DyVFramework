@@ -13,14 +13,20 @@
 #define DEPENDENCIES_H_
 
 #include <algorithm>
-#include<array>
+#include <array>
 #include <iostream>
 #include <queue>
 #include <random>
+#include <string>
 #include <vector>
+
 
 constexpr int column_size = 3;
 
+/**
+ * @brief Alias to the printable datatype
+ * 
+ */
 using table_t = std::array<std::string, column_size>;
 
 /**
@@ -47,7 +53,13 @@ std::vector<T> randomVector(int minSize, int maxSize = 1000000) {
   return result;
 }
 
-
+/**
+ * @brief Generates a queue of a std::array with the string values to print
+ * 
+ * @tparam T the type of the data. In this exercise will be tuple<int, double, double>
+ * @param elemets A set of values to print
+ * @return std::queue<table_t> Parsed data to printable type
+ */
 template<class T>
 std::queue<table_t> ProductToTable(std::vector<T> elemets) {
   std::queue<T> data;
@@ -67,12 +79,17 @@ std::queue<table_t> ProductToTable(std::vector<T> elemets) {
   return result;
 }
 
-
+/**
+ * @brief Prints a table of the sizes and the time of each sort method
+ * 
+ * @tparam T the type of the data. In this exercise will be tuple<int, double, double>
+ * @param elements The values to print
+ */
 template<class T>
 void printTable(std::vector<T> elements) {
   std::queue<table_t> data = ProductToTable(elements);
-  table_t headers{{"SIZE", "MERGE_TIME", "QUICK_TIME"}};
-  constexpr int size_wid = 15;
+  table_t headers{{"SIZE", "MERGE TIME(ms)", "QUICK TIME(ms)"}};
+  constexpr int size_wid = 10;
   constexpr int mergeTime_wid = 20;
   constexpr int quickTime_wid = 20;
   auto print_line = [](table_t const& tbl) {
