@@ -12,6 +12,8 @@
 #if defined(WIN32) || defined(_WIN32) || defined(_WIN64)
   #include <windows.h>
   #error No se pudo compilar en Windows
+#else
+  #include <unistd.h>
 #endif  // Si se compila en Windows
 
 #if defined(__APPLE__) && defined(__MACH__)
@@ -21,9 +23,12 @@
 
 #include <iostream>
 #include <chrono>
+#include <tuple>
 #include "../include/miscellany.h"
 #include "../include/divide.h"
-#include "../include/generate_rand.h"
+#include "../include/dependencies.h"
+
+const int VECTORS_TO_COMPUTE = 5;
 
 void debugExe();
 
@@ -41,33 +46,35 @@ int main() {
   }
   Divide<MergeSort<int>, std::vector<int>, std::vector<int>> Merge;
   Divide<QuickSort<int>, std::vector<int>, std::vector<int>> Quick;
-  std::vector<int> prob = randomVector<int>(4, 10);
-  // for (auto a : prob) std::cout << a << " ";
-  // std::cout << Merge.Equation() << std::endl;
-  // std::cout << "Orig: ";
-  // for (auto x : prob) std::cout << x << " ";
-  // std::cout << std::endl;
-  auto start = std::chrono::high_resolution_clock::now();
-  std::vector<int> result = Merge.Solve(prob, prob.size());
-  auto stop = std::chrono::high_resolution_clock::now();
-  auto duration =
-      std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-  std::cout << "Time taken by MergeSort(" << Merge.Equation() << "):\n"
-            << static_cast<double>(duration.count()) / 1.0e3 << "ms"
-            << std::endl;
-
-  start = std::chrono::high_resolution_clock::now();
-  result = Quick.Solve(prob, prob.size());
-  stop = std::chrono::high_resolution_clock::now();
-  duration =
-      std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-  std::cout << "Time taken by QuickSort: "
-            << static_cast<double>(duration.count()) / 1.0e3 << "ms"
-            << std::endl;
-
-  // std::cout << "Resu: ";
-  // for (auto x : result) std::cout << x << " ";
-  // std::cout << std::endl;
+  std::vector<std::tuple<int, double, double>> times;
+  for (int i = 0; i < VECTORS_TO_COMPUTE; ++i) {
+    sleep(0.005);
+    std::cout << "Calculando el vector " << i + 1 << std::endl;
+    std::vector<int> prob = randomVector<int>(4);
+    // while (prob.size() == std::get<0>(times[i - 1])) {
+    //   prob = randomVector<int>(4, 10);
+    // }
+    auto start = std::chrono::high_resolution_clock::now();
+    std::vector<int> result = Merge.Solve(prob, prob.size());
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto durationMerge =
+        std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    // std::cout << "Time taken by MergeSort(" << Merge.Equation() << "):\n"
+    //           << static_cast<double>(durationMerge.count()) / 1.0e3 << "ms"
+    //           << std::endl;
+    start = std::chrono::high_resolution_clock::now();
+    // result = Quick.Solve(prob, prob.size());
+    stop = std::chrono::high_resolution_clock::now();
+    auto durationQuick =
+        std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    // std::cout << "Time taken by QuickSort: "
+    //           << static_cast<double>(durationQuick.count()) / 1.0e3 << "ms"
+    //           << std::endl;
+    double msMerge = static_cast<double>(durationMerge.count()) / 1.0e3;
+    double msQuick = static_cast<double>(durationQuick.count()) / 1.0e3;
+    times.push_back(std::make_tuple(prob.size(), msMerge, msQuick));
+  }
+  printTable<std::tuple<int, double, double>>(times);
   return 0;
 }
 
