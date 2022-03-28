@@ -28,12 +28,12 @@ Divide<Alg, Prob, Sol>::~Divide() {
 template <class Alg, class Prob, class Sol>
 Sol Divide<Alg, Prob, Sol>::Solve(Prob p, int size) const {
   if (algorithm_->Small(p)) {
-    std::cout << " a " << std::endl;
+    // std::cout << " a " << std::endl;
     return algorithm_->SolveSmall(p);
   }
   std::vector<Prob> divided = algorithm_->Divide(p);
   std::vector<Sol> sols;
-  for (int i = 0; i < divided.size(); ++i) {
+  for (size_t i = 0; i < divided.size(); ++i) {
     Sol s1 = Solve(divided[i], size / 2);
     sols.push_back(s1);
   }

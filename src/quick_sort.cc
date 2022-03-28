@@ -48,12 +48,12 @@ std::vector<std::vector<T>> QuickSort<T>::Divide(std::vector<T> p) {
   divided.push_back(minors);
   divided.push_back(std::vector<T> {pivote});
   divided.push_back(biggers);
-    std::cout << "PIVOTE ----" << pivote << std::endl;
-    for (int i{0}; i < divided.size(); ++i) {
-    std::cout << "[NUEVO " << i << std::endl << " ";
-    for (auto x : divided[i]) std::cout << x << " ";
-    std::cout << std::endl;
-  }
+// std::cout << "PIVOTE ----" << pivote << std::endl;
+// for (int i{0}; i < divided.size(); ++i) {
+// std::cout << "[NUEVO " << i << std::endl << " ";
+// for (auto x : divided[i]) std::cout << x << " ";
+// std::cout << std::endl;
+// }
   return divided;
 }
 
