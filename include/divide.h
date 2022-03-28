@@ -26,11 +26,9 @@ class Divide {
  public:
   Divide();
   ~Divide();
-  void setProblem(Prob problem);
   Sol Solve(Prob prbolem, int size) const;
   std::string Equation() const;
  private:
-  Prob problem_;
   Alg* algorithm_;
 };
 

@@ -25,30 +25,23 @@ Divide<Alg, Prob, Sol>::~Divide() {
   delete algorithm_;
 }
 
-
-template <class Alg, class Prob, class Sol>
-void Divide<Alg, Prob, Sol>::setProblem(Prob problem) {
-  problem_ = problem;
-}
-
-
 template <class Alg, class Prob, class Sol>
 Sol Divide<Alg, Prob, Sol>::Solve(Prob p, int size) const {
   if (algorithm_->Small(p)) {
-    // std::cout << " a " << std::endl;
+    std::cout << " a " << std::endl;
     return algorithm_->SolveSmall(p);
   }
   std::vector<Prob> divided = algorithm_->Divide(p);
   std::vector<Sol> sols;
-  // for (int i = 0; )
-  Sol s1 = Solve(divided[0], size / 2);
-  sols.push_back(s1);
-  Sol s2 = Solve(divided[1], size / 2);
-  sols.push_back(s2);
+  for (int i = 0; i < divided.size(); ++i) {
+    Sol s1 = Solve(divided[i], size / 2);
+    sols.push_back(s1);
+  }
+  // Sol s2 = Solve(divided[1], size / 2);
+  // sols.push_back(s2);
   Sol solution = algorithm_->Combine(sols);
   return solution;
 }
-
 
 template <class Alg, class Prob, class Sol>
 std::string Divide<Alg, Prob, Sol>::Equation() const {

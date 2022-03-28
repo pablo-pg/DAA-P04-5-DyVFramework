@@ -40,7 +40,7 @@ int main() {
     return 0;
   }
   Divide<MergeSort<int>, std::vector<int>, std::vector<int>> Merge;
-  // Divide<QuickSort<int>, std::vector<int>, std::vector<int>> Quick;
+  Divide<QuickSort<int>, std::vector<int>, std::vector<int>> Quick;
   std::vector<int> prob = randomVector<int>(4, 10);
   // for (auto a : prob) std::cout << a << " ";
   // std::cout << Merge.Equation() << std::endl;
@@ -56,15 +56,15 @@ int main() {
             << static_cast<double>(duration.count()) / 1.0e3 << "ms"
             << std::endl;
 
-  // start = std::chrono::high_resolution_clock::now();
-  // std::vector<int> result = Quick.Solve(prob, prob.size());
-  // stop = std::chrono::high_resolution_clock::now();
-  // duration =
-  //     std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-  // std::cout << "Time taken by QuickSort: "
-  //           << static_cast<double>(duration.count()) / 1.0e3 << "ms"
-  //           << std::endl;
-  
+  start = std::chrono::high_resolution_clock::now();
+  result = Quick.Solve(prob, prob.size());
+  stop = std::chrono::high_resolution_clock::now();
+  duration =
+      std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+  std::cout << "Time taken by QuickSort: "
+            << static_cast<double>(duration.count()) / 1.0e3 << "ms"
+            << std::endl;
+
   // std::cout << "Resu: ";
   // for (auto x : result) std::cout << x << " ";
   // std::cout << std::endl;
@@ -99,8 +99,8 @@ void debugExe() {
     Divide<MergeSort<int>, std::vector<int>, std::vector<int>> Solver;
     result = Solver.Solve(prob, prob.size());
   } else {
-    // Divide<QuicSort<int>, std::vector<int>, std::vector<int>> Solver;
-    // result = Solver.Solve(prob, prob.size());
+    Divide<QuickSort<int>, std::vector<int>, std::vector<int>> Solver;
+    result = Solver.Solve(prob, prob.size());
   }
   for (auto x : result) std::cout << x << " ";
   std::cout << std::endl;

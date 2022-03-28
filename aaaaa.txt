@@ -1,0 +1,16 @@
+rm bin/framework
+g++ -Wswitch -Wall -Wextra -std=c++17 -ggdb -Wno-return-type  -I include src/merge_sort.cc src/main.cc src/divide.cc src/quick_sort.cc -o bin/framework -L lib
+./bin/framework
+Mode 1: normal
+Mode 2: debug
+Choose a mode: Algoritmo 1: MergeSort
+Algoritmo 2: QuickSort
+Elija un algoritmo: Tamaño del problema: Secuencia original: 
+1814 7857 5783 2481 794 
+Secuencia final: 
+ a 
+ a 
+ a 
+ a 
+ a 
+794 1814 2481 5783 7857 

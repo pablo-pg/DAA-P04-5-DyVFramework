@@ -16,8 +16,6 @@
 
 template<class T>
 bool MergeSort<T>::Small(std::vector<T> p) const {
-  // for (auto x : p) std::cout << x << " ";
-  // std::cout << " == 1? " << (p.size() == 1) << std::endl;
   return p.size() == 1;
 }
 
