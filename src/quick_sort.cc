@@ -31,9 +31,19 @@ std::vector<std::vector<T>> QuickSort<T>::Divide(std::vector<T> p) {
   T med = p[p.size() / 2];
   T last = p[p.size() - 1];
   T pivote = p[1];
-  if (first < med && first > last) pivote = first;
-  else if (med < first && med > last) pivote = med;
-  else if (last < med && last > first) pivote = last;
+  if (first < med) {
+    if (last < first) {
+      pivote = first;
+    } else {
+      pivote = last;
+    }
+  } else {
+    if (last < med) {
+      pivote = med;
+    } else {
+      pivote = last;
+    }
+  }
   // std::cout << "POSIBLES -" << first << " - " << med << " - " << last << std::endl;
   std::vector<T> minors;
   std::vector<T> biggers;
@@ -44,11 +54,10 @@ std::vector<std::vector<T>> QuickSort<T>::Divide(std::vector<T> p) {
       biggers.push_back(x);
     }
   }
-  // minors.push_back(pivote);
-  divided.push_back(minors);
+  if (minors.size() != 0) divided.push_back(minors);
   divided.push_back(std::vector<T> {pivote});
-  divided.push_back(biggers);
-// std::cout << "PIVOTE ----" << pivote << std::endl;
+  if (biggers.size() != 0) divided.push_back(biggers);
+// std::cout << "\nPIVOTE ----" << pivote << std::endl;
 // for (int i{0}; i < divided.size(); ++i) {
 // std::cout << "[NUEVO " << i << std::endl << " ";
 // for (auto x : divided[i]) std::cout << x << " ";
