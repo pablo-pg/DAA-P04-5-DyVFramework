@@ -33,7 +33,7 @@ class Algorithm {
    * @param c The complexity of divide and combine the data
    */
   Algorithm(std::string a, std::string b, std::string c) :
-      a_(a), b_(b), c_(c) {}
+      a_(a), b_(b), c_(c), treeLevels_(0) {}
 
   /**
    * @brief Check if a problem is enough smaller depending the algorithm
@@ -71,11 +71,14 @@ class Algorithm {
   std::string getA() const {return a_;}
   std::string getB() const {return b_;}
   std::string getC() const {return c_;}
+  int getTreeLevels() const {return treeLevels_;}   //< MODI
+  void resetTreeLevels() {treeLevels_ = 0;}
 
  protected:
   std::string a_;
   std::string b_;
   std::string c_;
+  int treeLevels_;    //< MODI
 };
 
 #endif  // ALGORITHM_H_

@@ -57,6 +57,7 @@ std::vector<std::vector<T>> QuickSort<T>::Divide(std::vector<T> p) {
   if (minors.size() != 0) divided.push_back(minors);
   divided.push_back(std::vector<T> {pivote});
   if (biggers.size() != 0) divided.push_back(biggers);
+  this->treeLevels_++;      //< MODI
 // std::cout << "\nPIVOTE ----" << pivote << std::endl;
 // for (int i{0}; i < divided.size(); ++i) {
 // std::cout << "[NUEVO " << i << std::endl << " ";

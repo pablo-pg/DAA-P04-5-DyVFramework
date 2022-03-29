@@ -48,9 +48,10 @@ class Divide {
    * 
    * @param prbolem The values of the problem. Will be recursively divided
    * @param size The size of the problem, will recursively change
+   * @param calls MODI Number of recursives call
    * @return Sol The solution of the problem
    */
-  Sol Solve(Prob prbolem, int size) const;
+  Sol Solve(Prob prbolem, int size, int& calls) const;
 
   /**
    * @brief Prints the T(n) equation of the algorithm
@@ -58,6 +59,9 @@ class Divide {
    * @return std::string The equation
    */
   std::string Equation() const;
+
+  int getTreeLevels() const {return algorithm_->getTreeLevels();}
+  void resetTreeLevels() {algorithm_->resetTreeLevels();}
 
  private:
   Alg* algorithm_;

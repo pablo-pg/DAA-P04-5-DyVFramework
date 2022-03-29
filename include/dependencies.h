@@ -21,7 +21,7 @@
 #include <vector>
 
 
-constexpr int column_size = 3;
+constexpr int column_size = 5;
 
 /**
  * @brief Alias to the printable datatype
@@ -72,7 +72,9 @@ std::queue<table_t> ProductToTable(std::vector<T> elemets) {
     auto size = std::to_string(std::get<0>(p));
     auto mergeTime = std::to_string(std::get<1>(p));
     auto quickTime = std::to_string(std::get<2>(p));
-    table_t element {size, mergeTime, quickTime};
+    auto mergeCalls = std::to_string(std::get<3>(p));    //< MODI
+    auto quickCalls = std::to_string(std::get<4>(p));    //< MODI
+    table_t element {size, mergeTime, quickTime, mergeCalls, quickCalls};    //< MODI
     data.pop();
     result.push(element);
   }
@@ -88,22 +90,28 @@ std::queue<table_t> ProductToTable(std::vector<T> elemets) {
 template<class T>
 void printTable(std::vector<T> elements) {
   std::queue<table_t> data = ProductToTable(elements);
-  table_t headers{{"SIZE", "MERGE TIME(ms)", "QUICK TIME(ms)"}};
+  table_t headers{{"SIZE", "MERGE TIME(ms)", "QUICK TIME(ms)", "MERGE CALLS", "QUICK CALLS"}};
   constexpr int size_wid = 10;
   constexpr int mergeTime_wid = 20;
   constexpr int quickTime_wid = 20;
+  constexpr int mergeCalls_wid = 15;
+  constexpr int quickCalls_wid = 15;
   auto print_line = [](table_t const& tbl) {
-    auto const& [SIZE, MERGE_TIME, QUICK_TIME] = tbl;
+    auto const& [SIZE, MERGE_TIME, QUICK_TIME, MERGE_CALLS, QUICK_CALLS] = tbl;
     std::cout.width(size_wid);
     std::cout << ("| " + SIZE) << '|';
     std::cout.width(mergeTime_wid);
     std::cout << ("| " + MERGE_TIME) << '|';
     std::cout.width(quickTime_wid);
     std::cout << (' ' + QUICK_TIME) << '|';
+    std::cout.width(mergeCalls_wid);
+    std::cout << (' ' + MERGE_CALLS) << '|';
+    std::cout.width(quickCalls_wid);
+    std::cout << (' ' + QUICK_CALLS) << '|';
     std::cout << '\n';
   };
   constexpr int total_wid = size_wid + mergeTime_wid + quickTime_wid +
-      column_size;
+      mergeCalls_wid + quickCalls_wid + column_size;
   auto print_break = [] {
     std::cout.width(total_wid);
     std::cout.fill('-');

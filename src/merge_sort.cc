@@ -36,6 +36,7 @@ std::vector<std::vector<T>> MergeSort<T>::Divide(std::vector<T> p) {
   }
   result.push_back(left);
   result.push_back(right);
+  this->treeLevels_++;             //< MODI
   // for (int i{0}; i < result.size(); ++i) {
   //   std::cout << "[NUEVO " << i << std::endl << " ";
   //   for (auto x : result[i]) std::cout << x << " ";
